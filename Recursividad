@@ -35,7 +35,28 @@ void opera(int fil, int col, int size)
 
 //Ejercicio 2
 
-int N;
-int matriz[50][50]
-bool sigCasilla = false;
+int n;
+int matriz[50][50];
+bool casilla = false;
+
+void movimiento(int a, int b)
+{
+
+    if((a<n && b<n) && (a>=0 && b>=0)) && (matriz[a][b] != -1 && casilla == false)
+    {
+        if(a == n-1 && b == n-1)
+        {
+            casilla = true;
+            return casilla;
+        }else{
+        movimiento(a+1,b);
+        movimiento(a,b+1);
+        movimiento(a-1,b);
+        movimiento(a,b-1);
+    }
+}
+
+//Ejercicio 3
+
+
 
