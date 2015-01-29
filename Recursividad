@@ -1,0 +1,41 @@
+#include<iostream>
+
+
+//Ejercicio 1
+
+int casilla(int potencia)
+{
+    int pot = 1;
+    for (int i = 0; i < potencia; i++)
+        pot *= 2;
+    return pot;
+}
+
+
+int matriz[50][50];
+
+void opera(int fil, int col, int size)
+{
+    if (fil < size){
+        if (col < size){
+
+            if (col < size)
+                matriz[col][fil] = casilla(col);
+            else
+                matriz[col][fil] = casilla(ren);
+
+            opera(fil,(col+1),tam);
+
+        }else{
+            opera((ren+1),0,tam);
+        }
+    }
+}
+
+
+//Ejercicio 2
+
+int N;
+int matriz[50][50]
+bool sigCasilla = false;
+
