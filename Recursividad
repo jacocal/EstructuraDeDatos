@@ -24,13 +24,13 @@ void opera(int fil, int col, int size)
                 matriz[col][fil] = casilla(fil);
             }
 
-            opera(fil,(col+1),tam);
+            opera(fil,(col+1),size);
 
         }else{
-            opera((fil+1),0,tam);
+            opera((fil+1),0,size);
         }
-    }
 }
+
 
 
 //Ejercicio 2
