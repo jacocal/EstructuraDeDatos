@@ -1,0 +1,93 @@
+#pragma once
+#include <iostream>
+using namespace std;
+
+
+
+template<class T>
+class Lista{
+    private:
+       T* lista;
+       int size;
+       int num_elementos;
+        
+    
+    public: 
+        Lista();
+        Lista(T* lista, int size);
+        void agregar(T valor);
+        void eliminar(int pos);
+        T& getElemento(int pos);   //IMPORTANTE &
+        void setElemento(int pos, T valor);
+        int getNumElementos();
+};
+
+
+
+template<class T>
+Lista<T>::Lista(){
+    lista = new T[30];
+    size = 30;
+    num_elementos = 0;
+}
+
+template<class T>
+Lista<T>::Lista(T* lista, int size){
+    this->lista = lista;
+    this->size  = size;
+    num_elementos = 0;
+}
+
+
+
+
+template<class T>
+void ampliar_memoria(T*& lista, int& size){
+
+    size = size+1;
+    T* lista_aux = new T[size];
+    for (int i = 0; i < size-1; i++){
+        lista_aux[i] = lista[i];
+    }
+    delete lista; //Libera el espacio del arreglo
+    lista = lista_aux; //Se le asigna al original la direccion del nuevo arreglo
+    lista_aux = NULL;
+}
+
+
+template<class T>
+void Lista<T>::agregar(T valor){
+    if (num_elementos >= size)
+        ampliar_memoria(lista,size);
+    lista[num_elementos] = valor;
+    num_elementos++;
+}
+
+
+
+
+template<class T>
+void Lista<T>::eliminar(int pos){
+    if (pos > 0) pos--;
+    for (int i = pos; i < size-1; i++)
+        lista[i] = lista[i+1];
+    num_elementos--;
+}
+
+template<class T>
+T& Lista<T>::getElemento(int pos){
+    return lista[pos];
+    
+}
+
+template<class T>
+void Lista<T>::setElemento(int pos, T elemento)
+{
+    lista[pos] = elemento;
+}
+
+template<class T>
+int Lista<T>::getNumElementos(){
+    return num_elementos;
+    
+}
