@@ -42,14 +42,13 @@ public:
     std::ostream& imprime(std::ostream& os, ArbolNodo<T> * nodo);
 };
 
-template <class T>
-ArbolBinario<T>::ArbolBinario() { }
-
+/*Constructor parametrizado*/
 template <class T>
 ArbolBinario<T>::ArbolBinario(ArbolNodo<T> * info) {
     raiz = info;
 }
 
+/*el destructor*/
 template <class T>
 ArbolBinario<T>::~ArbolBinario() {
     clear(raiz);
@@ -62,7 +61,7 @@ void ArbolBinario<T>::clear() {
 
 template <class T>
 void ArbolBinario<T>::clear(ArbolNodo<T> * nodo) {
-    if (nodo) {
+    if (nodo) {  /*aquí se va eliminando*/
         clear(nodo->getIzquierdo());
         clear(nodo->getDerecho());
         delete nodo;
@@ -82,8 +81,10 @@ ArbolNodo<T> * ArbolBinario<T>::getRaiz() {
 template <class T>
 bool ArbolBinario<T>::insert(T value, T padre) {
     ArbolNodo<T> * padre_ptr = buscar(padre);
-    if (padre_ptr)
+    if (padre_ptr) /*si no se cumple, pasa el insert*/
+    {
         return insert(value, padre_ptr);
+    }
     return false;
 }
 
@@ -91,12 +92,19 @@ bool ArbolBinario<T>::insert(T value, T padre) {
 template <class T>
 bool ArbolBinario<T>::insert(T value, ArbolNodo<T> * padre) {
     if (!padre)
+    {
         raiz = new ArbolNodo<T>(value);
-    else {
+    }
+    else
+    {
         if (!padre->getIzquierdo())
+        {
             padre->setIzquierdo(new ArbolNodo<T>(value));
+        }
         else if (!padre->getDerecho())
+        {
             padre->setDerecho(new ArbolNodo<T>(value));
+        }
         else
             return false;
     }
@@ -104,13 +112,16 @@ bool ArbolBinario<T>::insert(T value, ArbolNodo<T> * padre) {
 }
 
 template <class T>
-void ArbolBinario<T>::preOrden() {
+void ArbolBinario<T>::preOrden()
+{
     preOrden(raiz);
 }
 
 template <class T>
-void ArbolBinario<T>::preOrden(ArbolNodo<T> * nodo) {
-    if (nodo) {
+void ArbolBinario<T>::preOrden(ArbolNodo<T> * nodo) 
+{
+    if (nodo)
+    {
         std::cout << *nodo << " " << endl;
         preOrden(nodo->getIzquierdo());
         preOrden(nodo->getDerecho());
@@ -118,13 +129,16 @@ void ArbolBinario<T>::preOrden(ArbolNodo<T> * nodo) {
 }
 
 template <class T>
-void ArbolBinario<T>::inOrden() {
+void ArbolBinario<T>::inOrden()
+{
     inOrden(raiz);
 }
 
 template <class T>
-void ArbolBinario<T>::inOrden(ArbolNodo<T> * nodo) {
-    if (nodo) {
+void ArbolBinario<T>::inOrden(ArbolNodo<T> * nodo)
+{
+    if (nodo)
+    {
         inOrden(nodo->getIzquierdo());
         std::cout << *nodo << " ";
         inOrden(nodo->getDerecho());
@@ -132,7 +146,8 @@ void ArbolBinario<T>::inOrden(ArbolNodo<T> * nodo) {
 }
 
 template <class T>
-void ArbolBinario<T>::postOrden() {
+void ArbolBinario<T>::postOrden()
+{
     postOrden(raiz);
 }
 /*
@@ -255,6 +270,7 @@ ArbolNodo<T> * ArbolBinario<T>::metodoA()
     return metodoA(raiz);
 }
 
+/*aquí usa recursividad y los apuntadores se desreferencian en el if*/
 template <class T>
 void ArbolBinario<T>::semejantes(ArbolNodo<T> *nodo, ArbolNodo<T> *raiz)
 {
@@ -292,6 +308,7 @@ ArbolNodo<T> * ArbolBinario<T>::metodoA(ArbolNodo<T> * nodo)
         }
         return new ArbolNodo<T>(valor);
     }
+    /*return nullptr*/
     return NULL;
 }
 
@@ -339,6 +356,15 @@ T ArbolBinario<T>::suma(ArbolNodo<T> *nodo)
 template <class T>
 std::ostream& ArbolBinario<T>::imprime(std::ostream& os, ArbolNodo<T> * nodo) 
 {
+    /*
+    while(nodo=!padre_ptr)
+    {
+        os << *nodo << " ";
+        imprime(os, nodo->getIzquierdo());
+        imprime(os, nodo->getDerecho());
+    }
+    */
+    
     if (nodo) 
     {
         os << *nodo << " ";
