@@ -5,7 +5,6 @@
 
 using namespace std;
 
-namespace vcn {
 
     template <class T>
     class BinaryTree {
@@ -336,6 +335,5 @@ namespace vcn {
         }
     }
 
-}
 
 #endif
