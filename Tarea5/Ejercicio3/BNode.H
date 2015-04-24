@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-namespace vcn {
     
     template <class T>
     class BNode {
@@ -65,7 +64,6 @@ namespace vcn {
         return os;
     }
     
-}
 
 
 
